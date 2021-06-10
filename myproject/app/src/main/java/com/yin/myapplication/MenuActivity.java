@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yin.myapplication.databinding.ActivityMenuBinding;
+import com.yin.myapplication.db.UserDBManager;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MenuActivity extends AppCompatActivity {
     ActivityMenuBinding binding;
@@ -23,14 +26,13 @@ public class MenuActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_menu);
         binding.setLifecycleOwner(this);
 
-        SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
-        String format_time1 = format1.format (System.currentTimeMillis());
-        binding.lastDay.setText(format_time1);
 
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         ArrayList<MyRecyclerItem> list = new ArrayList<>();
+        Integer sum_reward = 0;
         for (int i=0; i<3; i++) {
-            list.add(new MyRecyclerItem("reward: 100", "2020-06-10 11:00:00", "30 mL")) ;
+            sum_reward += 100;
+            list.add(new MyRecyclerItem(100, "2020-06-10 11:00:00", 30)) ;
         }
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
@@ -40,6 +42,11 @@ public class MenuActivity extends AppCompatActivity {
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         recordAdapter adapter = new recordAdapter(list) ;
         recyclerView.setAdapter(adapter) ;
+
+        // init view
+        String user_id = UserDBManager.getUser_id();
+        binding.userNum.setText("안녕하세요! "+ user_id==null?"":user_id +" 회원님");
+        binding.totalMoney.setText("현재 적립금은 "+sum_reward+"원 입니다!");
 
     }
 }

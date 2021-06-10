@@ -25,14 +25,6 @@
                     app:srcCompat="@drawable/money" />
 
                 <TextView
-                    android:id="@+id/lastDay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="YYYY/MM/DD"
-                    android:textSize="@dimen/default_textsize" />
-
-                <TextView
                     android:id="@+id/totalMoney"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -45,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="안녕하세요! User회원님"
+                    android:text="안녕하세요! 회원님"
                     android:textSize="@dimen/default_textsize" />
 
                 <androidx.recyclerview.widget.RecyclerView

@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"/>
 
         <Button
+            android:padding="@dimen/small_margin"
             android:id="@+id/button_login"
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginRight="@dimen/default_margin"
@@ -56,6 +57,8 @@
             android:text="login"/>
 
         <Button
+            android:visibility="gone"
+            android:padding="@dimen/small_margin"
             android:id="@+id/button_signup"
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginRight="@dimen/default_margin"

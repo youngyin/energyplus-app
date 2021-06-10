@@ -1,18 +1,18 @@
 package com.yin.myapplication;
 
 public class MyRecyclerItem {
-    private String reward;
+    private Integer reward;
     private String date;
-    private String vol;
+    private Integer vol;
 
-    public MyRecyclerItem(String reward, String date, String vol) {
+    public MyRecyclerItem(Integer reward, String date, Integer vol) {
         this.reward = reward;
         this.date = date;
         this.vol = vol;
     }
 
     public String getReward() {
-        return reward;
+        return "reward: " + reward;
     }
 
     public String getDate() {
@@ -20,6 +20,6 @@ public class MyRecyclerItem {
     }
 
     public String getVol() {
-        return vol;
+        return vol + "mL";
     }
 }
