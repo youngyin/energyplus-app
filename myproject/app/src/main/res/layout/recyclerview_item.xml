@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:background="@color/green"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginRight="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default_margin">
+
+        <TextView
+            android:id="@+id/text_reward"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="reward : 500"
+            android:textSize="@dimen/default_textsize"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2020/06/10 11:00:00"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/text_vol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="30ml"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</layout>
