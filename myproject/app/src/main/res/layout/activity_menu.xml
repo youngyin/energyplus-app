@@ -18,29 +18,29 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <ImageView
+                    android:layout_gravity="center"
                     android:id="@+id/imageView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_margin="@dimen/default_margin"
-                    app:srcCompat="@drawable/money" />
-
-                <TextView
-                    android:id="@+id/totalMoney"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="현재 적립금액은 0원입니다!"
-                    android:textSize="@dimen/default_textsize" />
+                    app:srcCompat="@drawable/biofuel" />
 
                 <TextView
                     android:id="@+id/userNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="안녕하세요! 회원님"
+                    android:textSize="@dimen/default_textsize" />
+
+                <TextView
+                    android:id="@+id/totalMoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:textSize="@dimen/default_textsize" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_margin="@dimen/small_margin"
                     android:id="@+id/recycler1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

@@ -11,15 +11,18 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginRight="@dimen/default_margin"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_gravity="center"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/gs_logo"/>
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:background="@null"
+            android:src="@drawable/ci_signature_ve" />
+
 
         <EditText
+            android:padding="@dimen/small_margin"
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginRight="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"
@@ -29,6 +32,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:padding="@dimen/small_margin"
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginRight="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"
@@ -38,6 +42,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:padding="@dimen/small_margin"
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginRight="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"

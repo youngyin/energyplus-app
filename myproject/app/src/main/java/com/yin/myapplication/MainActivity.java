@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
 
         binding.buttonLogin.setOnClickListener(v->{
-            String mUrl = "http://10.0.2.2:3000/api/get/login/"+
+            String mUrl = "http://10.0.2.2:3000/api/login/"+
                     binding.userId.getText().toString()+"/" +
                     binding.userPw.getText().toString() + "/" +
                     binding.userPhone.getText().toString();

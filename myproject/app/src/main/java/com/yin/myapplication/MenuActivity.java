@@ -2,6 +2,7 @@ package com.yin.myapplication;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +12,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.JsonParseException;
 import com.yin.myapplication.databinding.ActivityMenuBinding;
 import com.yin.myapplication.db.UserDBManager;
+
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +29,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class MenuActivity extends AppCompatActivity {
     ActivityMenuBinding binding;
@@ -43,9 +49,31 @@ public class MenuActivity extends AppCompatActivity {
             public void onChanged(@Nullable final String newName) {
                 // Update the UI, in this case, a TextView.
 
-                init_view();
 
-                //binding.connect.setText(newName);
+                if (newName==null) return;
+                String mYnewName = newName
+                        .replace("\"volume\":", "")
+                        .replace("\"discharge_date\":", "")
+                        .replace("\"", "")
+                        .replace("[", "")
+                        .replace("]", "")
+                        .replace("{", "")
+                        .replace("}", "");
+
+                String[] arr = mYnewName.split(",");
+                ArrayList<MyRecyclerItem> list = new ArrayList<MyRecyclerItem>();
+                for (int i=0;i<arr.length;i+=2){
+                    try{
+                        Log.d("로그", arr[i]+"-------------------->"+arr[i+1]);
+                        Integer vol = Integer.parseInt(arr[i]);
+                        list.add(new MyRecyclerItem(vol*500, arr[i+1], vol));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+
+                init_view(list);
+                //binding.userNum.setText(mYnewName);
             }
         };
 
@@ -56,7 +84,7 @@ public class MenuActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_menu);
         binding.setLifecycleOwner(this);
 
-        String mUrl = "http://10.0.2.2:3000/api/get/record/user_id/"+
+        String mUrl = "http://10.0.2.2:3000/api/searchrecordbyuser/"+
                 UserDBManager.getUser_id();
         try {
             new MenuActivity.JSONTask().execute(mUrl);
@@ -66,13 +94,11 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    private void init_view(){
+    private void init_view(ArrayList<MyRecyclerItem> list){
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
-        ArrayList<MyRecyclerItem> list = new ArrayList<>();
         Integer sum_reward = 0;
-        for (int i=0; i<3; i++) {
-            sum_reward += 100;
-            list.add(new MyRecyclerItem(100, "2020-06-10 11:00:00", 30)) ;
+        for (int i=0; i<list.size(); i++) {
+            sum_reward += list.get(i).getIntReward();
         }
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
@@ -86,7 +112,7 @@ public class MenuActivity extends AppCompatActivity {
         // init view
         String user_id = UserDBManager.getUser_id();
         binding.userNum.setText("안녕하세요! "+ user_id==null?"":user_id +" 회원님");
-        binding.totalMoney.setText("현재 적립금은 "+sum_reward+"원 입니다!");
+        binding.totalMoney.setText("현재 적립금은 "+sum_reward+"P 입니다!");
     }
 
     public class JSONTask extends AsyncTask<String, String, String> {
@@ -162,9 +188,7 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            //binding.userNum.setText(result);
-            model.getCurrentName().setValue(result);
-            //init_view();
+            model.getCurrentName().setValue(result.toString());
         }
 
     }

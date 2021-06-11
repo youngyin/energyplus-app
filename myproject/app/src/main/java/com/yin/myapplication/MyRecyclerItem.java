@@ -20,6 +20,10 @@ public class MyRecyclerItem {
     }
 
     public String getVol() {
-        return vol + "mL";
+        return vol + "L";
+    }
+
+    public Integer getIntReward() {
+        return reward;
     }
 }
