@@ -17,7 +17,7 @@ public class UserDBManager {
     }
 
     public static String getUser_id() {
-        return sharedPref.getString("user_id", "");
+        return sharedPref.getString("user_id", "test");
     }
 
     public static void setUser_id(String user_id) {
