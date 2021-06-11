@@ -74,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.userPw.getText().toString() + "/" +
                     binding.userPhone.getText().toString();
             try {
-                //new JSONTask().execute(mUrl);
-                s_login();
+                new JSONTask().execute(mUrl);
 
             } catch (Exception e){
 
