@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -30,12 +31,34 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     static Context context;
-    String result_connect ;
+    private NameViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Get the ViewModel.
+        model = new ViewModelProvider(this).get(NameViewModel.class);
+
+        // Create the observer which updates the UI.
+        final Observer<String> nameObserver = new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable final String newName) {
+                // Update the UI, in this case, a TextView.
+                // check login
+                if (newName.contains("1") && newName.contains("count(*)")){
+                    s_login();
+                } else if(newName.contains("0") && newName.contains("count(*)")){
+                    f_login();
+                }
+
+                //binding.connect.setText(newName);
+            }
+        };
+
+        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
+        model.getCurrentName().observe(this, nameObserver);
 
         // SharedPreferences - user
         context = getApplicationContext();
@@ -52,26 +75,10 @@ public class MainActivity extends AppCompatActivity {
                     binding.userPhone.getText().toString();
             try {
                 new JSONTask().execute(mUrl);
-                String result = binding.connect.getText().toString();
 
             } catch (Exception e){
-                binding.connect.setText("잘못된 계정입니다.");
+
             }
-        });
-
-        binding.buttonSignup.setOnClickListener(v -> {
-            String mUrl = "http://10.0.2.2:3000/api/get/signup/"+
-                    binding.userId.getText().toString()+"/" +
-                    binding.userPw.getText().toString() + "/" +
-                    binding.userPhone.getText().toString();
-            new JSONTask().execute(mUrl);
-
-            UserDBManager.setUser_id(binding.userId.getText().toString());
-            UserDBManager.setUser_pw(binding.userPw.getText().toString());
-            UserDBManager.setPhone(binding.userPhone.getText().toString());
-
-            binding.buttonSignup.setVisibility(View.GONE);
-            binding.buttonLogin.setVisibility(View.VISIBLE);
         });
 
         // init view
@@ -91,16 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void f_login(){
         // 로그인 실패 시
-        AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.context);
-        dlg.setTitle("로그인 실패"); //제목
-        dlg.setMessage("존재하지 않는 회원 정보입니다. 회원가입하시겠습니까?"); // 메시지
-        dlg.setPositiveButton("확인", new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which) {
-                binding.buttonSignup.setVisibility(View.VISIBLE);
-                binding.buttonLogin.setVisibility(View.GONE);
-            }
-        });
-        dlg.show();
+        Toast.makeText(this, "존재하지 않는 계정입니다.", Toast.LENGTH_LONG).show();
     }
 
     public class JSONTask extends AsyncTask<String, String, String> {
@@ -176,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            binding.connect.setText(result);
+            model.getCurrentName().setValue(result);
         }
 
     }

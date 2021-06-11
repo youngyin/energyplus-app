@@ -56,21 +56,10 @@
             android:layout_height="wrap_content"
             android:text="login"/>
 
-        <Button
-            android:visibility="gone"
-            android:padding="@dimen/small_margin"
-            android:id="@+id/button_signup"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginRight="@dimen/default_margin"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="signup"/>
-
         <TextView
             android:id="@+id/connect"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="disconnect"/>
 
     </LinearLayout>
