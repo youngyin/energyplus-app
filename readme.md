@@ -1,6 +1,11 @@
+## Introduction
+This project is an app I made while preparing for a hackathon, and simple communication with the server was implemented.
+
+Includes two functions: 
+- login
+- monitoring
+
 ## Icon
-
-
 
 <img src="myapp\app\src\main\res\drawable\biofuel.png" width="20%" />
 
