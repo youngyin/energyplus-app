@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.JsonParseException;
 import com.yin.myapplication.databinding.ActivityMenuBinding;
+import com.yin.myapplication.db.BaseUrl;
 import com.yin.myapplication.db.UserDBManager;
 
 import org.json.JSONObject;
@@ -64,7 +65,7 @@ public class MenuActivity extends AppCompatActivity {
                 ArrayList<MyRecyclerItem> list = new ArrayList<MyRecyclerItem>();
                 for (int i=0;i<arr.length;i+=2){
                     try{
-                        Log.d("로그", arr[i]+"-------------------->"+arr[i+1]);
+                        //Log.d("로그", arr[i]+"-------------------->"+arr[i+1]);
                         Integer vol = Integer.parseInt(arr[i]);
                         list.add(new MyRecyclerItem(vol*500, arr[i+1], vol));
                     }catch (Exception e){
@@ -84,7 +85,7 @@ public class MenuActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_menu);
         binding.setLifecycleOwner(this);
 
-        String mUrl = "http://10.0.2.2:3000/api/searchrecordbyuser/"+
+        String mUrl = BaseUrl.getBaseUrl() + "/api/searchrecordbyuser/"+
                 UserDBManager.getUser_id();
         try {
             new MenuActivity.JSONTask().execute(mUrl);

@@ -18,7 +18,7 @@
             android:layout_marginTop="@dimen/default_margin"
             android:layout_marginRight="@dimen/default_margin"
             android:background="@null"
-            android:src="@drawable/ci_signature_ve" />
+            android:src="@drawable/leaf" />
 
 
         <EditText

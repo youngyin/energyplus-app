@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.yin.myapplication.databinding.ActivityMainBinding;
+import com.yin.myapplication.db.BaseUrl;
 import com.yin.myapplication.db.UserDBManager;
 
 import org.json.JSONObject;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 // check login
                 if (newName.contains("1") && newName.contains("count(*)")){
                     s_login();
-                } else if(newName.contains("0") && newName.contains("count(*)")){
+                } else {
                     f_login();
                 }
 
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
 
         binding.buttonLogin.setOnClickListener(v->{
-            String mUrl = "http://10.0.2.2:3000/api/login/"+
+            String mUrl = BaseUrl.getBaseUrl() +  "/api/login/"+
                     binding.userId.getText().toString()+"/" +
                     binding.userPw.getText().toString() + "/" +
                     binding.userPhone.getText().toString();
