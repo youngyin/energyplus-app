@@ -18,6 +18,14 @@
 
 
 
+### DB 구성
+
+<img src="document\DB_user.PNG" width="70%" />
+
+<img src="document\DB_record.PNG" width="70%" />
+
+<img src="document\DB_collector.PNG" width="70%;" />
+
 ## DEMO
 
 <img src="document\demo.gif" width="40%" />
