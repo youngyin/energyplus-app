@@ -20,7 +20,7 @@
 
 ## DEMO
 
-<video src="document\demo.mp4" width="30%"/>
+<img src="document\demo.gif" width="40%" />
 
 
 
