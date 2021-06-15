@@ -4,7 +4,6 @@ C:.
 |   .gitignore
 |   database.json
 |   main.js
-|   main.text
 |   package-lock.json
 |   package.json
 |   
